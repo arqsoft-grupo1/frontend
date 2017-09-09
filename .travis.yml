@@ -1,10 +1,26 @@
-language: php
-php:
-  - '7.1'
+sudo: required
+dist: trusty
+language: node_js
+node_js:
+  - '4.2'
 
-deploy:
-  provider: heroku
-  app: arq-soft-grupo1-frontend   # optional if it's the same as your repo name
-  api_key: 4a91bd54-ea92-4670-a6b0-55d13103afa3
+addons:
+apt:
+  sources:
+    - google-chrome
+  packages:
+    - google-chrome-stable
+    - google-chrome-beta
 
+before_install:
+  - export CHROME_BIN=chromium-browser
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
 
+before_script:
+- npm install -g angular-cli
+- npm install -g karma
+- npm install
+- ng build
+
+script: karma start config/karma.conf.js --single-run
