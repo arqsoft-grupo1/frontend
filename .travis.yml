@@ -13,5 +13,5 @@ script:
 deploy:
 provider: heroku
 api_key: 4a91bd54-ea92-4670-a6b0-55d13103afa3
-app: angular-seed-test-p140814
+app: arq-soft-grupo1-frontend
 
